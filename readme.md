@@ -1,6 +1,6 @@
 # Tetriminos
 
-[logo]: https://raw.githubusercontent.com/fab1o/Tetriminos/master/Logos/150.png "Tetriminos"
+![alt tag](https://raw.githubusercontent.com/fab1o/Tetriminos/master/Logos/150.png)
 
 *Tetris game for your Microsoft Surface, Windows 8.1 and Windows 10*
 
