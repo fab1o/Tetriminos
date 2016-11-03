@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tetriminos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+    <script src="/js/firebase.js"></script>
+
+    <link href="/css/hover.css" rel="stylesheet" />
+
+    <!-- Tetris references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+    <script src="/MSAdvertisingJS/ads/ad.js"></script>
+    <script src="/js/fb.js"></script>
+    <script src="/js/navigator.js"></script>
+
+    <script src="/js/helper.js"></script>
+    <script src="/js/kinetic-v5.0.1.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/linq.min.js"></script>
+    <script src="/js/fb_login.js"></script>
+
+</head>
+<body>
+    <audio id="music_0" preload="auto">
+        <source src="/sounds/tetris.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="music_1" preload="auto">
+        <source src="/sounds/full.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="music_2" preload="auto">
+        <source src="/sounds/music_b.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="music_3" preload="auto">
+        <source src="/sounds/music_d.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="music_4" preload="auto">
+        <source src="/sounds/music_c.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="music_5" preload="auto">
+        <source src="/sounds/electro.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="music_6" preload="auto">
+        <source src="/sounds/tacky.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="beep" preload="auto">
+        <source src="/sounds/fx/beep.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="shake" preload="auto">
+        <source src="/sounds/fx/shake.mp3" type="audio/mp3" />
+    </audio>
+
+    <audio id="clear_0" preload="auto">
+        <source src="/sounds/fx/clear0.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_1" preload="auto">
+        <source src="/sounds/fx/clear1.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_2" preload="auto">
+        <source src="/sounds/fx/clear2.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_3" preload="auto">
+        <source src="/sounds/fx/clear3.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_4" preload="auto">
+        <source src="/sounds/fx/clear4.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_5" preload="auto">
+        <source src="/sounds/fx/clear5.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_6" preload="auto">
+        <source src="/sounds/fx/clear6.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_7" preload="auto">
+        <source src="/sounds/fx/clear7.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_8" preload="auto">
+        <source src="/sounds/fx/clear8.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_9" preload="auto">
+        <source src="/sounds/fx/clear9.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_10" preload="auto">
+        <source src="/sounds/fx/clear10.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_11" preload="auto">
+        <source src="/sounds/fx/clear11.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_12" preload="auto">
+        <source src="/sounds/fx/clear12.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_13" preload="auto">
+        <source src="/sounds/fx/clear13.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_14" preload="auto">
+        <source src="/sounds/fx/clear14.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="clear_15" preload="auto">
+        <source src="/sounds/fx/clear15.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="drop" preload="auto">
+        <source src="/sounds/fx/drop.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="rotate" preload="auto">
+        <source src="/sounds/fx/rotate.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="touch" preload="auto">
+        <source src="/sounds/fx/touch.mp3" type="audio/mp3" />
+    </audio>
+
+    <audio id="stageup_0" preload="auto">
+        <source src="/sounds/fx/stageup0.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="stageup_1" preload="auto">
+        <source src="/sounds/fx/stageup1.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="stageup_2" preload="auto">
+        <source src="/sounds/fx/stageup2.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="stageup_3" preload="auto">
+        <source src="/sounds/fx/stageup3.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="stageup_4" preload="auto">
+        <source src="/sounds/fx/stageup4.mp3" type="audio/mp3" />
+    </audio>
+
+    <audio id="cleargood_0" preload="auto">
+        <source src="/sounds/fx/cleargood0.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="cleargood_1" preload="auto">
+        <source src="/sounds/fx/cleargood1.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="cleargood_2" preload="auto">
+        <source src="/sounds/fx/cleargood2.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="cleargood_3" preload="auto">
+        <source src="/sounds/fx/cleargood3.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="cleargood_4" preload="auto">
+        <source src="/sounds/fx/cleargood4.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="button_select" preload="auto">
+        <source src="/sounds/fx/button_select.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="challenge_done" preload="auto">
+        <source src="/sounds/fx/found.mp3" type="audio/mp3" />
+    </audio>
+
+    <div id="welcome" class="page" style="opacity: 0">
+
+        <div class="touch_controls">
+            Welcome to
+        </div>
+
+        <h1 class="title" style="margin:30px 0px 30px 0px;">TETRIMINOS ARCADE</h1>
+
+        <div class="touch_controls">
+            Sign in with facebook to place your name on the Tetrminos Global Ranking.
+        </div>
+        <div class="button outline-inward" id="bt_facebook">SIGN IN WITH FACEBOOK</div>
+        <div class="button outline-inward" id="bt_offline">SKIP TO OFFLINE PLAY</div>
+
+    </div>
+
+    <div id="game" style="display:none;">
+
+
+        <div id="ad1" style="position: absolute; width: 160px; height: 600px; z-index: 1;"
+             data-win-control="MicrosoftNSJS.Advertising.AdControl"
+             data-win-options="{applicationId: '48c31f60-3089-42db-a6c8-c4677192fa4a', adUnitId: '10712791', onErrorOccurred: errorLogger1}">
+        </div>
+
+        <div id="page">
+
+            <div id="page_home" class="page" style="opacity: 0">
+                <div id="greetings" class="touch_controls" style="margin-bottom:20px;">
+                    Welcome to
+                </div>
+                <h1 class="title">TETRIMINOS ARCADE</h1>
+                <div class="touch_controls">
+                    <ul>
+                        <li>Press arrow keys to move the blocks or drag using touch screen.</li>
+                        <li>Double tap or press up key to rotate.</li>
+                        <li>Swipe down to drop or press space.</li>
+                    </ul>
+                </div>
+                <div id="about" class="about">
+                    A tetromino is a geometric shape composed of four squares, connected orthogonally forming a polyomino.
+                </div>
+                <div class="button outline-inward" id="bt_new_game">SINGLE PLAYER</div>
+                <div class="button outline-inward" id="bt_challenges">CHALLENGE MODE</div>
+                <div class="button outline-inward" id="bt_facebook_sign">FACEBOOK SIGN IN</div>
+
+            </div>
+            <div id="page_game" class="page" style="display:none;">
+                <h1 class="title tetriminosTitle">TETRIMINOS ARCADE</h1>
+                <div id="game_col">
+                    <div id="game_zone"></div>
+                    <div class="messages_wrapper">
+                        <div id="messages"></div>
+                    </div>
+                    <div id="overlay" class="overlay"></div>
+                </div>
+                <div id="infos">
+                    <div id="timer_zone" class="timer_zone"></div>
+                    <div id="next_zone"></div>
+
+                    <div id="score_zone"></div>
+
+                    <div class="lines_wrapper">
+                        LINES
+                    </div>
+                    <div id="lines_zone"></div>
+
+                    <div class="blocks_wrapper">
+                        BLOCKS
+                    </div>
+                    <div id="blocks_zone"></div>
+                    <div class="best_wrapper">
+                        BEST
+                    </div>
+                    <div id="best_zone"></div>
+                    <div class="best_wrapper">
+                        LEVEL
+                    </div>
+                    <div id="level_zone"></div>
+                    <div class="challenge_wrapper">
+                        CHALLENGE
+                    </div>
+                    <div id="challenge_text" class="challenge_text">
+
+                    </div>
+                    <!--<a class="button" id="bt_pause">PAUSE</a>-->
+                    <!--<div id="trialDiv" class="trial">
+                        TRIAL
+                    </div>-->
+                </div>
+            </div>
+            <div id="page_challenges" class="page" style="display:none;">
+                <h1 class="title">CHALLENGES</h1>
+                <div id="aboutChallenge" class="aboutChallenges">
+                    You have not completed any challenge. Select one.
+                </div>
+                <div id='chalenge_list' class="chalenge_list">
+                    <!--<div class="challenge notdone lightblue">
+                <div class="text">Clear 4 lines in one game Clear 4 lines in one game Clear 4 lines in one game Clear 4 lines in one game</div>
+                <div class="starred">
+                    ★★☆
+                    <span class="hint">Use blocks also known as tetriminos to build lines.</span>
+                </div>
+            </div>-->
+                </div>
+                <!--<a class="button" id="bt_new_game_2">NEW GAME</a>-->
+
+                <div class="aboutChallenges">
+                    Swipe down to open app bar or right-click.
+                </div>
+            </div>
+        </div> <!-- /#page -->
+
+        <div id="ad2" style="position: absolute; width: 300px; height: 600px; z-index: 0;"
+             data-win-control="MicrosoftNSJS.Advertising.AdControl"
+             data-win-options="{applicationId: '48c31f60-3089-42db-a6c8-c4677192fa4a', adUnitId: '10718192', onErrorOccurred: errorLogger}">
+        </div>
+
+        <div id="commandsAppBar" data-win-control="WinJS.UI.AppBar" data-win-options="">
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmdSignOff',label:'Sign Out',icon:'blockcontact',section:'global',tooltip:'Sign Out'}"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmdMute',label:'No Music',icon:'mute',section:'global',tooltip:'No Music'}"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmdFx',label:'No Fx',icon:'mute',section:'global',tooltip:'No SoundFx'}"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmdShare',label:'Share',icon:'emoji2',section:'global',tooltip:'Share', disabled: true}"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmdChallenges',label:'Challenges',icon:'outlinestar',section:'global',tooltip:'Challenges'}"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmdPause',label:'Pause',icon:'pause',section:'global',tooltip:'Pause', disabled: true}"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmdPlay',label:'New Game',icon:'play',section:'global',tooltip:'New Game'}"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmdHome',label:'Home',icon:'home',section:'global',tooltip:'Home', disabled: true}"></button>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="/js/ranking.js"></script>
+    <script type="text/javascript" src="/js/tetris.js"></script>
+
+    <script>
+
+        //WinJS.Utilities.markSupportedForProcessing(
+        //window.errorLogger = function (sender, evt) {
+        //    //console.log((new Date()).toLocaleTimeString() + ": " + sender.element.id + " error: " + evt.errorMessage + " error code: " + evt.errorCode + "\n");
+
+        //    if (evt.errorCode == "NoAdAvailable") {
+        //        if (sender.element.id == "ad2") {
+        //            document.getElementById('ad').style.left = document.getElementById('ad2').style.left;
+        //            document.getElementById('ad').style.top = document.getElementById('ad2').style.top;
+        //            document.getElementById('ad').style.display = "block";
+        //            document.getElementById('ad').winControl.refresh();
+        //            document.getElementById('ad2').style.display = "none";
+        //        }
+        //    }
+
+        //});
+
+        //WinJS.Utilities.markSupportedForProcessing(
+        //window.errorLogger1 = function (sender, evt) {
+
+        //    if (evt.errorCode == "NoAdAvailable") {
+        //        if (sender.element.id == "ad1") {
+        //            document.getElementById('ad').style.left = document.getElementById('ad1').style.left;
+        //            document.getElementById('ad').style.top = document.getElementById('ad1').style.top;
+        //            document.getElementById('ad').style.display = "block";
+        //            document.getElementById('ad').winControl.refresh();
+        //            document.getElementById('ad1').style.display = "none";
+        //        }
+        //    }
+
+        //});
+
+        //initializeLicense();
+
+    </script>
+</body>
+</html>

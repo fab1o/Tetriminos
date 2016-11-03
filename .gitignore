@@ -1,0 +1,11 @@
+Tetriminos.Arcade/bin/
+Tetriminos.Arcade/bld/
+Tetriminos.Arcade/AppPackages/
+
+/*.suo
+/Tetriminos.Arcade/*.user
+*.user
+.vs
+Tetriminos.Arcade/Package.StoreAssociation.xml
+Tetriminos.Arcade/Tetriminos_StoreKey.pfx
+Tetriminos.Arcade/BundleArtifacts/

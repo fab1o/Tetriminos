@@ -1,0 +1,31 @@
+﻿/* Outline Inward */
+
+.outline-inward {
+  /*display: inline-block;*/
+  position: relative;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.outline-inward:before {
+  pointer-events: none;
+  content: '';
+  position: absolute;
+  border: #e1e1e1 solid 3px;
+  border-radius: 13px;
+  top: -15px;
+  right: -15px;
+  bottom: -15px;
+  left: -15px;
+  opacity: 0;
+  transition-duration: .3s;
+  transition-property: top, right, bottom, left;
+}
+
+.outline-inward:hover:before {
+  top: -3px;
+  right: -3px;
+  bottom: -3px;
+  left: -3px;
+  opacity: 1;
+}
