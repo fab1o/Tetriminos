@@ -1,5 +1,6 @@
 # Tetriminos
-===============
+
+[logo]: Tetriminos/Logos/150.png "Tetriminos"
 
 *Tetris game for your Microsoft Surface, Windows 8.1 and Windows 10*
 
